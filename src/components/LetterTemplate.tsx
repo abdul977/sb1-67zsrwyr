@@ -122,7 +122,7 @@ export const LetterTemplate: React.FC<LetterTemplateProps> = ({ letter, position
           <div>
             <p>Yours sincerely,</p>
             <div className="mt-8">
-              <p className="font-semibold text-green-700 print:text-green-700">Chairman, Board of Trustees</p>
+              <p className="font-semibold text-green-700 print:text-green-700">Chairman, Shurah Committee</p>
               <p>MCAN</p>
             </div>
           </div>
