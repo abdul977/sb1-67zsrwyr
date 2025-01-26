@@ -2,7 +2,6 @@ export interface Position {
   title: string;
   category: string;
   duties: string[];
-  reporting: string;
   meetings: string[];
 }
 

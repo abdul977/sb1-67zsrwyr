@@ -3,7 +3,7 @@ import { LetterForm } from './components/LetterForm';
 import { LetterTemplate } from './components/LetterTemplate';
 import { Letter } from './types';
 import { positions } from './data/positions';
-import { Scroll, FileText, Download } from 'lucide-react';
+import { Scroll, FileText, Download, Award } from 'lucide-react';
 import { useReactToPrint } from 'react-to-print';
 
 function App() {
@@ -25,41 +25,40 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
-      <header className="bg-white shadow-sm border-b border-green-100">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
-            <img 
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt9tu2jBmeR0z3xxTGMLY-EHri-sqrUTPXbt5q55knyyqzkNaHyTcMEiE&s=10" 
-              alt="MCAN Logo" 
-              className="w-10 h-10 object-contain"
-            />
-            <h1 className="text-xl font-semibold text-green-800">
-              MCAN Executive Appointment Letter System
-            </h1>
+      <header className="bg-gradient-to-r from-green-600 to-green-700 shadow-lg border-b border-green-800">
+        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-4">
+            <Award className="w-12 h-12 text-white" />
+            <div>
+              <h1 className="text-2xl font-bold text-white">
+                MCAN ADHOC EXECUTIVE APPOINTMENT LETTER SYSTEM
+              </h1>
+              <p className="text-green-100 mt-1">Muslim Corpers' Association of Nigeria - FCT Chapter</p>
+            </div>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md border border-green-100">
-            <div className="flex items-center gap-2 mb-4">
-              <FileText className="w-5 h-5 text-green-600" />
-              <h2 className="text-lg font-medium text-green-800">Generate Appointment Letter</h2>
+          <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-green-600">
+            <div className="flex items-center gap-2 mb-6">
+              <FileText className="w-6 h-6 text-green-600" />
+              <h2 className="text-xl font-semibold text-green-800">Generate Appointment Letter</h2>
             </div>
             <LetterForm onSubmit={handleGenerateLetter} />
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-md border border-green-100">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-green-600">
+            <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
-                <Scroll className="w-5 h-5 text-green-600" />
-                <h2 className="text-lg font-medium text-green-800">Preview</h2>
+                <Scroll className="w-6 h-6 text-green-600" />
+                <h2 className="text-xl font-semibold text-green-800">Preview</h2>
               </div>
               {generatedLetter && position && (
                 <button
                   onClick={handlePrint}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors duration-200"
+                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors duration-200 shadow-md"
                 >
                   <Download className="w-4 h-4" />
                   Save as PDF
