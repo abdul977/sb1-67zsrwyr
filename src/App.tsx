@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
 import { supabase } from './lib/supabase';
 import Dashboard from './pages/Dashboard';
+import TasksPage from './pages/TasksPage';
+import TeamPage from './pages/TeamPage';
+import CalendarPage from './pages/CalendarPage';
+import SettingsPage from './pages/SettingsPage';
 import Auth from './pages/Auth';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -31,15 +35,13 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
-            
-            {/* Protected routes that require authentication */}
-            <Route path="/tasks" element={<Dashboard />} />
-            <Route path="/calendar" element={<Dashboard />} />
+            <Route path="/tasks" element={<TasksPage />} />
+            <Route path="/team/:id" element={<TeamPage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
             
             {/* Admin-only routes */}
             <Route element={<AdminRoute />}>
-              <Route path="/admin/*" element={<Dashboard />} />
-              <Route path="/settings" element={<Dashboard />} />
+              <Route path="/settings" element={<SettingsPage />} />
             </Route>
           </Route>
         </Route>
