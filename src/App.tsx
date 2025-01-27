@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore';
 import { supabase } from './lib/supabase';
 import Dashboard from './pages/Dashboard';
@@ -7,6 +7,9 @@ import TasksPage from './pages/TasksPage';
 import TeamPage from './pages/TeamPage';
 import CalendarPage from './pages/CalendarPage';
 import SettingsPage from './pages/SettingsPage';
+import ReportsPage from './pages/ReportsPage';
+import AnalyticsPage from './pages/AnalyticsPage';
+import DocsPage from './pages/DocsPage';
 import Auth from './pages/Auth';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -36,8 +39,12 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/tasks" element={<TasksPage />} />
+            <Route path="/team" element={<Navigate to="/" replace />} />
             <Route path="/team/:id" element={<TeamPage />} />
             <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/analytics" element={<AnalyticsPage />} />
+            <Route path="/docs" element={<DocsPage />} />
             
             {/* Admin-only routes */}
             <Route element={<AdminRoute />}>
@@ -45,6 +52,9 @@ function App() {
             </Route>
           </Route>
         </Route>
+
+        {/* Catch all route */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

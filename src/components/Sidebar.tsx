@@ -7,12 +7,17 @@ import {
   Calendar,
   Settings,
   PlusSquare,
+  BarChart2,
+  Activity,
+  BookOpen,
 } from 'lucide-react';
 import { useTeamStore } from '../store/teamStore';
+import { useAuthStore } from '../store/authStore';
 
 export default function Sidebar() {
   const location = useLocation();
   const { teams, fetchTeams } = useTeamStore();
+  const { isAdmin } = useAuthStore();
 
   React.useEffect(() => {
     fetchTeams();
@@ -21,10 +26,19 @@ export default function Sidebar() {
   const navigation = [
     { name: 'Dashboard', href: '/', icon: LayoutDashboard },
     { name: 'My Tasks', href: '/tasks', icon: CheckSquare },
-    { name: 'Team', href: '/team', icon: Users },
     { name: 'Calendar', href: '/calendar', icon: Calendar },
-    { name: 'Settings', href: '/settings', icon: Settings },
+    { name: 'Reports', href: '/reports', icon: BarChart2 },
+    { name: 'Analytics', href: '/analytics', icon: Activity },
+    { name: 'Documentation', href: '/docs', icon: BookOpen },
+    ...(isAdmin ? [{ name: 'Settings', href: '/settings', icon: Settings }] : []),
   ];
+
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <div className="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200">
@@ -42,7 +56,7 @@ export default function Sidebar() {
                   key={item.name}
                   to={item.href}
                   className={`flex items-center px-3 py-2 text-sm font-medium rounded-md ${
-                    location.pathname === item.href
+                    isActive(item.href)
                       ? 'bg-gray-100 text-gray-900'
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
@@ -65,7 +79,11 @@ export default function Sidebar() {
                 <Link
                   key={team.id}
                   to={`/team/${team.id}`}
-                  className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900"
+                  className={`flex items-center px-3 py-2 text-sm font-medium rounded-md ${
+                    isActive(`/team/${team.id}`)
+                      ? 'bg-gray-100 text-gray-900'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
                 >
                   <Users className="w-5 h-5 mr-3" />
                   {team.name}
