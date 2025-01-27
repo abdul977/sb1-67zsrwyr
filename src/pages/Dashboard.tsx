@@ -197,7 +197,6 @@ export default function Dashboard() {
                                 </div>
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
-                                <span <td className="px-6 py-4 whitespace-nowrap">
                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getPriorityColor(task.priority)}`}>
                                   {task.priority}
                                 </span>
