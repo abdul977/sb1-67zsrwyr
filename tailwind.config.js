@@ -5,16 +5,4 @@ export default {
     extend: {},
   },
   plugins: [],
-  // Enable print styles
-  variants: {
-    extend: {
-      backgroundColor: ['print'],
-      textColor: ['print'],
-      borderColor: ['print'],
-      borderWidth: ['print'],
-      margin: ['print'],
-      padding: ['print'],
-      display: ['print'],
-    },
-  },
 };

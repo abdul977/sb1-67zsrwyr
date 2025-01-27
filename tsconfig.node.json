@@ -18,5 +18,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["MCAN Executive Appointment Letter System"]
+  "include": ["vite.config.ts"]
 }
